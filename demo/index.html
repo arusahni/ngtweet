@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngtweet-test">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>My HTML File</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="ngtweet.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        angular.module("ngtweet-test", ['ngRoute', 'ngtweet']);
+        </script>
+    </head>
+    <body>
+        <div class="container" ng-controller="MainCtrl">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-class="{active: currentView === '/'}"><a href="#/">Home</a></li>
+                        <li ng-class="{active: currentView === '/tweets'}"><a href="#/tweets">More Tweets</a></li>
+                        <li ng-class="{active: currentView === '/ids'}"><a href="#/ids">Tweet IDs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+        <script src="routes.js" type="text/javascript" charset="utf-8"></script>
+        <script src="controllers.js" type="text/javascript" charset="utf-8"></script>
+    </body>
+</html>

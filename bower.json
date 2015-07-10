@@ -1,0 +1,23 @@
+{
+  "name": "ngtweet",
+  "version": "0.1.0",
+  "authors": [
+    "Aru Sahni <arusahni@gmail.com>"
+  ],
+  "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
+  "keywords": [
+    "angularjs",
+    "angular",
+    "twitter",
+    "tweet",
+    "widget",
+    "embed"
+  ],
+  "license": "MIT",
+  "homepage": "http://arusahni.net",
+  "devDependencies": {
+    "angular": "~1.4.2",
+    "angular-route": "~1.4.2",
+    "bootstrap": "~3.3.5"
+  }
+}
