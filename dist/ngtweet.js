@@ -1,3 +1,30 @@
+/**
+ * ngTweet - Angular directives for better Twitter integration.
+ *
+ * @license
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Aru Sahni, http://arusahni.net
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
 (function() {
 'use strict';
 
@@ -17,12 +44,17 @@ function TwitterWidget($log, TwitterWidgetFactory) {
         restrict: 'E',
         replace: true,
         transclude: true,
+        scope: {
+            twitterWidgetId: '='
+        },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
             $log.debug('Linking', element, attrs);
-            if (attrs.twitterWidgetId && attrs.twitterWidgetId !== '') {
+            if (!angular.isUndefined(scope.twitterWidgetId)) {
                 TwitterWidgetFactory.create(attrs.twitterWidgetId, element[0]).then(function success(embed) {
                     $log.debug('Success!!!');
+                }).catch(function creationError(message) {
+                    $log.error('Could not create widget: ', message, element);
                 });
             } else {
                 TwitterWidgetFactory.load(element[0]);
@@ -86,9 +118,11 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
     }
 
     function wrapElement(element) {
-        return loadScript().then(function success(twttr) {
+        loadScript().then(function success(twttr) {
             $log.debug('Wrapping', twttr, element);
             twttr.widgets.load(element);
+        }).catch(function errorWrapping(message) {
+            $log.error('Could not wrap element: ', message, element);
         });
     }
 

@@ -51,9 +51,11 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
     }
 
     function wrapElement(element) {
-        return loadScript().then(function success(twttr) {
+        loadScript().then(function success(twttr) {
             $log.debug('Wrapping', twttr, element);
             twttr.widgets.load(element);
+        }).catch(function errorWrapping(message) {
+            $log.error('Could not wrap element: ', message, element);
         });
     }
 

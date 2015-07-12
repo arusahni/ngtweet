@@ -19,6 +19,8 @@ function TwitterWidget($log, TwitterWidgetFactory) {
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 TwitterWidgetFactory.create(attrs.twitterWidgetId, element[0]).then(function success(embed) {
                     $log.debug('Success!!!');
+                }).catch(function creationError(message) {
+                    $log.error('Could not create widget: ', message, element);
                 });
             } else {
                 TwitterWidgetFactory.load(element[0]);
