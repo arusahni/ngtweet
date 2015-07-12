@@ -5,19 +5,26 @@
     "Aru Sahni <arusahni@gmail.com>"
   ],
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
+  "main": "dist/ngtweet.min.js",
   "keywords": [
-    "angularjs",
     "angular",
+    "angularjs",
     "twitter",
     "tweet",
-    "widget",
-    "embed"
+    "widget"
   ],
   "license": "MIT",
   "homepage": "http://arusahni.net",
-  "devDependencies": {
-    "angular": "~1.4.2",
-    "angular-route": "~1.4.2",
-    "bootstrap": "~3.3.5"
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "demo/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.2"
   }
 }
