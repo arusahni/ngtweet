@@ -54,7 +54,7 @@ Load your app, and you get:
 
 ### Linked
 
-Given a Tweet with ID '617749885933232128', simply add `<twitter-widget>` tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.
+Given a Tweet with ID '617749885933232128', simply add a `<twitter-widget>` tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.
 
 ```html
 <twitter-widget twitter-widget-id="617749885933232128">
