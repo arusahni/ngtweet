@@ -14,7 +14,7 @@
     "widget"
   ],
   "license": "MIT",
-  "homepage": "http://arusahni.net",
+  "homepage": "https://github.com/arusahni/ngtweet",
   "ignore": [
     "**/.*",
     "node_modules",
