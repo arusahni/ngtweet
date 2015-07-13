@@ -1,6 +1,6 @@
 {
   "name": "ngtweet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     "Aru Sahni <arusahni@gmail.com>"
   ],
@@ -24,7 +24,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5",
-    "angular-route": "~1.4.2"
+      "angular": ">= 1.0.8"
+  },
+  "devDependencies": {
+      "bootstrap": "~3.3.5",
+      "angular-route": "~1.4.2"
   }
 }
