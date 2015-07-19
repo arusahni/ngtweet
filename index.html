@@ -1,0 +1,193 @@
+<!doctype html>
+<html ng-app="ngTweetDemo">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ngTweet - Twitter Widgets for AngularJS</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/prism/themes/prism-tomorrow.css"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var myApp = angular.module('ngTweetDemo', ['ngtweet']);
+        myApp.controller('ToggleVisibilityCtrl', function($scope) {
+            $scope.visible = false;
+        });
+        /** Angular directive for PrismJS via: http://blog.chorip.am/articles/prismjs-and-angularjs/ **/
+        myApp.directive('prism', function() {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.ready(function() {
+                        Prism.highlightElement(element[0]);
+                    });
+                }
+            };
+        });
+    </script>
+    <style type="text/css" media="screen">
+        /* Fix for ui-bootstrap */
+        .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+        /* Page styles */
+        body { padding-top: 50px; }
+        .panel {
+            position: relative;
+            padding: 45px 15px 15px;
+            margin-top: 20px;
+        }
+        .jumbotron {
+            background-image: url("res/twitter.svg");
+            background-size: 100vh, cover;
+            background-attachment: fixed;
+            background-position: top right;
+            background-repeat: no-repeat;
+        }
+        .panel::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "Example";
+        }
+        .twitter-tweet-unrendered, .ngtweet-wrapper blockquote.twitter-tweet {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="ng-cloak">
+<header class="navbar navbar-default navbar-fixed-top" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="." class="navbar-brand">ngTweet</a>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                   <a href="#why">Why?</a>
+                </li>
+                <li>
+                    <a href="#intro">Getting started</a>
+                </li>
+                <li>
+                    <a href="#tweet">Tweet Embed</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/arusahni/ngtweet/">Fork on GitHub</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div role="main">
+    <div class="jumbotron" id="overview">
+        <div class="container">
+            <h1>ngTweet</h1>
+            <p>Embed Twitter widgets into your Angular application without messing around with script loaders or embed state.</p>
+        </div>
+    </div>
+    <div class="container">
+        <h1 id="why">Why?</h1>
+        <p>Embedding Tweets is easy... if your website is a static page. Just drop in a Twitter-supplied embed and you're off to the races. Once you start dynamically altering page content, through AJAX or simple DOM manipulation, things become far less simple since Twitter's widget loader not only scans the entire DOM by default, but require interactions that can violate some of the core Angular principles without proper attention.</p>
+        <h1 id="intro">Getting started</h1>
+        <h2>Dependencies</h2>
+        <ul>
+            <li>AngularJS 1.x</li>
+        </ul>
+        <h2>Installation</h2>
+        <h3>With Bower (preferred)</h3>
+        <pre><code class="language-bash">$ bower install --save ngtweet</code></pre>
+        <p>Then include the script.</p>
+        <pre><code class="language-markup">
+&lt;script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"&gt;&lt;/script&gt;
+&lt;script src="bower_components/ngtweet/dist/ngtweet.min.js"&gt;&lt;/script&gt;</code></pre>
+        <h3>Manually</h3>
+        <p><a href="https://raw.githubusercontent.com/arusahni/ngtweet/master/dist/ngtweet.min.js">Download the latest release (1.5kb minified, gzipped)</a>. Then include the script.</p>
+        <pre><code class="language-markup">
+&lt;script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"&gt;&lt;/script&gt;
+&lt;script src="./path/to/ngtweet.min.js"&gt;&lt;/script&gt;</code></pre>
+        <h3>Add module dependency</h3>
+        <pre><code class="language-javascript">var myApp = angular.module('myApp', ['ngtweet']);</code></pre>
+
+        <h2 id="tweet">Usage</h2>
+        <p>There are two ways to embed a Twitter widget - with the source from Twitter (<a href="#tweetEmbedded">embedded</a>), or via Tweet ID (<a href="#tweetLinked">linked</a>).
+        </p>
+
+        <h3 id="tweetEmbedded">Embedded</h3>
+        <p>Given the source for an embedded Tweet </p>
+
+        <pre><code class="language-markup">
+&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;&quot;No one likes Bit O&#39; Honey.&quot; ~&lt;a href="https://twitter.com/griffinmcelroy"&gt;@griffinmcelroy&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/truth?src=hash"&gt;#truth&lt;/a&gt;&lt;/p&gt;&mdash; Aru (@IAmAru) &lt;a href="https://twitter.com/IAmAru/status/608455483507245059"&gt;June 10, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
+
+        <p>First, remove the <code>&lt;script&gt;</code> element from the markup.  Then, simply wrap it in a <code>&lt;twitter-widget&gt;</code> tag:</p>
+
+        <pre><code class="language-markup">
+&lt;twitter-widget&gt;
+    &lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;&quot;No one likes Bit O&#39; Honey.&quot; ~&lt;a href="https://twitter.com/griffinmcelroy"&gt;@griffinmcelroy&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/truth?src=hash"&gt;#truth&lt;/a&gt;&lt;/p&gt;&mdash; Aru (@IAmAru) &lt;a href="https://twitter.com/IAmAru/status/608455483507245059"&gt;June 10, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;/twitter-widget&gt;</code></pre>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-widget>
+                            <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">&quot;No one likes Bit O&#39; Honey.&quot; ~<a href="https://twitter.com/griffinmcelroy">@griffinmcelroy</a> <a href="https://twitter.com/hashtag/truth?src=hash">#truth</a></p>&mdash; Aru (@IAmAru) <a href="https://twitter.com/IAmAru/status/608455483507245059">June 10, 2015</a></blockquote>
+                            </twitter-widget>
+                        </div>
+                        <div ng-if="!visible">
+                            <!-- Note: The sample Tweet below is missing the `twitter-tweet` class because it's being selectively rendered. -->
+                            <blockquote class="twitter-tweet-unrendered" lang="en"><p lang="en" dir="ltr">&quot;No one likes Bit O&#39; Honey.&quot; ~<a href="https://twitter.com/griffinmcelroy">@griffinmcelroy</a> <a href="https://twitter.com/hashtag/truth?src=hash">#truth</a></p>&mdash; Aru (@IAmAru) <a href="https://twitter.com/IAmAru/status/608455483507245059">June 10, 2015</a></blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="tweetLinked">Linked</h3>
+        <p>Given a Tweet with ID '617749885933232128', simply add a <code>&lt;twitter-widget&gt;</code> tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.</p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-widget twitter-widget-id="'617749885933232128'">
+                            </twitter-widget>
+                        </div>
+                        <div ng-if="!visible">
+                            <pre><code class="language-markup" prism>
+&lt;twitter-widget twitter-widget-id="'617749885933232128'"&gt;
+&lt;/twitter-widget&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="bower_components/ngtweet/dist/ngtweet.min.js"></script>
+<script src="bower_components/prism/prism.js"></script>
+<script src="bower_components/prism/components/prism-bash.min.js"></script>
+</body>
+</html>
