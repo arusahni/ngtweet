@@ -55,6 +55,9 @@
             letter-spacing: 1px;
             content: "Example";
         }
+        .panel button {
+            margin-top: 8px;
+        }
         .twitter-tweet-unrendered, .ngtweet-wrapper blockquote.twitter-tweet {
             margin-top: 10px;
         }
@@ -183,6 +186,29 @@
                         <div ng-if="!visible">
                             <pre><code class="language-markup" prism>
 &lt;twitter-widget twitter-widget-id="'617749885933232128'"&gt;
+&lt;/twitter-widget&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Tweet appearance can be customized by adding a <code>twitter-widget-options</code> attribute with an object containing the configuration parameters (<a href="https://dev.twitter.com/web/embedded-tweets/parameters">as defined in the Twitter Widget API docs)</a></p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-widget twitter-widget-id="'617749885933232128'" twitter-widget-options="{'cards': 'hidden', 'align': 'right'}">
+                            </twitter-widget>
+                        </div>
+                        <div ng-if="!visible">
+                            <pre><code class="language-markup" prism>
+&lt;twitter-widget twitter-widget-id="'617749885933232128'" twitter-widget-options="{'cards': 'hidden', 'align': 'right'}"&gt;
 &lt;/twitter-widget&gt;</code></pre>
                         </div>
                     </div>

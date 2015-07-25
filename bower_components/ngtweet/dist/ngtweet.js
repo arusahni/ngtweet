@@ -45,7 +45,8 @@ function TwitterWidget($log, TwitterWidgetFactory) {
         replace: true,
         transclude: true,
         scope: {
-            twitterWidgetId: '='
+            twitterWidgetId: '=',
+            twitterWidgetOptions: '='
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
@@ -54,7 +55,7 @@ function TwitterWidget($log, TwitterWidgetFactory) {
                 if (!angular.isString(scope.twitterWidgetId)) {
                     $log.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
-                TwitterWidgetFactory.create(scope.twitterWidgetId, element[0]).then(function success(embed) {
+                TwitterWidgetFactory.create(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
                     $log.debug('Success!!!');
                 }).catch(function creationError(message) {
                     $log.error('Could not create widget: ', message, element);
@@ -116,10 +117,10 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
         $log.debug('Tweet rendered', event.target.parentElement.attributes);
     }
 
-    function createTweet(id, element) {
+    function createTweet(id, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating', twttr, id, element);
-            return $q.when(twttr.widgets.createTweet(id, element));
+            $log.debug('Creating', twttr, id, element, options);
+            return $q.when(twttr.widgets.createTweet(id, element, options));
         });
     }
 

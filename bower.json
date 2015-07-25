@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "angular": "~1.4.2",
-    "ngtweet": "~0.1.1",
+    "ngtweet": "d1c9d29fb1cdd8eec7caa38ed0a80ec81bb43eaa",
     "angular-ui-bootstrap": "~0.13.0",
     "prism": "~1.0.0"
   }
