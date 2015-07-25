@@ -93,6 +93,9 @@
                 <li>
                     <a href="#tweet">Tweet Embed</a>
                 </li>
+                <li>
+                    <a href="#additional">Additional Features</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="https://github.com/arusahni/ngtweet/">Fork on GitHub</a></li>
@@ -215,6 +218,14 @@
                 </div>
             </div>
         </div>
+        <h2 id="additional">Additional Features</h2>
+        <h3>Script Loading Hint</h3>
+        <p>ngTweet downloads Twitter's Widgets script the first time a widget directive is encountered. To download the script at app startup, add the <code>twitter-widget-initialize</code> attribute to an element. For example:</p>
+        <pre><code class="language-markup" prism>
+&lt;html ng-app="myapp"&gt;
+    &lt;body twitter-widget-initialize&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
     </div>
 </div>
 <footer class="footer">
