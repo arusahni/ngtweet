@@ -1,6 +1,6 @@
 {
   "name": "ngtweet",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "homepage": "https://github.com/arusahni/ngtweet/",
   "repository": "arusahni/ngtweet",
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",

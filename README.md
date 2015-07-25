@@ -63,6 +63,19 @@ Given a Tweet with ID '617749885933232128', simply add a `<twitter-widget>` tag 
 
 ![A screenshot of a rendered linked Tweet](./res/rendered-linked.png)
 
+## Additional features
+
+### Eagerly load the Twitter widget script
+
+The first time the `twitterWidget` directive is encountered, ngTweet downloads Twitter's Widget script.  If you would rather the script be downloaded at app startup, simply add the `twitter-widget-initialize` attribute to an element. For example,
+
+```html
+<html ng-app="myapp">
+    <body twitter-widget-initialize>
+    </body>
+</html>
+```
+
 ## Contributing
 
 Pull requests are welcomed!  The existing code follows John Papa's wonderful [Angular Style Guide](https://github.com/johnpapa/angular-styleguide). Run `gulp build` to generate the debug and minified JavaScript files, and then `gulp serve` to run the demo site to verify embeds work.  Please include the compiled code within the `dist/` directory with your PR.
