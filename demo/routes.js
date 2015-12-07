@@ -10,5 +10,8 @@ angular.module('ngtweet-test').config(['$routeProvider',
       }).
       when('/ids', {
           templateUrl: 'partials/ids.html'
+      }).
+      when('/timelines', {
+          templateUrl: 'partials/timelines.html'
       });
   }]);

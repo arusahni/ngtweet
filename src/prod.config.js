@@ -1,3 +1,6 @@
+/**
+ * Various production configuration settings.
+ */
 (function() {
 'use strict';
 
