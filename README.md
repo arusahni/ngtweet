@@ -31,7 +31,7 @@ Then include `ngtweet.js` or `ngtweet.min.js` in your markup and add `ngtweet` t
 
 There are two ways to embed a Twitter widget - with the source from Twitter (*embedded*), or via Tweet ID (*linked*).
 
-### Embedded
+### Embedded Tweet
 
 Given the source for an embedded Tweet
 
@@ -52,7 +52,7 @@ Load your app, and you get:
 
 ![A screenshot of a rendered embedded Tweet](./res/rendered-embed.png)
 
-### Linked
+### Linked Tweet
 
 Given a Tweet with ID '617749885933232128', simply add a `<twitter-widget>` tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.
 
@@ -62,6 +62,38 @@ Given a Tweet with ID '617749885933232128', simply add a `<twitter-widget>` tag 
 ```
 
 ![A screenshot of a rendered linked Tweet](./res/rendered-linked.png)
+
+### Embedded Timeline
+
+Given the source for an embedded timeline.
+
+```html
+<a class="twitter-timeline"  href="https://twitter.com/IAmAru/lists/food-trucks" data-widget-id="673710543212052480">Tweets from https://twitter.com/IAmAru/lists/food-trucks</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+```
+
+Remove the `<script>` element from the markup. Then wrap it in a `<twitter-timeline>` tag:
+
+```html
+<twitter-timeline>
+    <a class="twitter-timeline" href="https://twitter.com/IAmAru/lists/food-trucks" data-widget-id="673710543212052480"> Tweets from https://twitter.com/IAmAru/lists/food-trucks</a>
+</twitter-timeline>
+```
+
+Load your app, and you get:
+
+![A screenshot of a rendered embedded timeline](./res/rendered-timeline-embed.png)
+
+### Linked Timeline
+
+Given a timeline with ID '673710543212052480', simply add a `<twitter-timeline>` tag to your markup with an attribute named `twitter-timeline-id` specifying the Timeline ID.
+
+```html
+<twitter-timeline twitter-timeline-id="'6673710543212052480'">
+</twitter-timeline>
+```
+
+![A screenshot of a rendered linked timeline](./res/rendered-timeline-linked.png)
 
 ## Additional features
 
