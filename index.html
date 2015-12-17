@@ -58,7 +58,8 @@
         .panel button {
             margin-top: 8px;
         }
-        .twitter-tweet-unrendered, .ngtweet-wrapper blockquote.twitter-tweet {
+        .twitter-tweet-unrendered,
+        .ngtweet-wrapper blockquote.twitter-tweet {
             margin-top: 10px;
         }
         footer {
@@ -92,6 +93,9 @@
                 </li>
                 <li>
                     <a href="#tweet">Tweet Embed</a>
+                </li>
+                <li>
+                    <a href="#tweet">Timelines</a>
                 </li>
                 <li>
                     <a href="#additional">Additional Features</a>
@@ -133,12 +137,12 @@
         <h3>Add module dependency</h3>
         <pre><code class="language-javascript">var myApp = angular.module('myApp', ['ngtweet']);</code></pre>
 
-        <h2 id="tweet">Usage</h2>
-        <p>There are two ways to embed a Twitter widget - with the source from Twitter (<a href="#tweetEmbedded">embedded</a>), or via Tweet ID (<a href="#tweetLinked">linked</a>).
-        </p>
+        <!-- TWEETS SECTION -->
+        <h2 id="tweet">Tweets</h2>
+        <p>There are two ways to embed a Twitter widget - with the source from Twitter (<a href="#tweetEmbedded">embedded</a>), or via Tweet ID (<a href="#tweetLinked">linked</a>).</p>
 
         <h3 id="tweetEmbedded">Embedded</h3>
-        <p>Given the source for an embedded Tweet </p>
+        <p>Given the source for an embedded Tweet</p>
 
         <pre><code class="language-markup">
 &lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;&quot;No one likes Bit O&#39; Honey.&quot; ~&lt;a href="https://twitter.com/griffinmcelroy"&gt;@griffinmcelroy&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/truth?src=hash"&gt;#truth&lt;/a&gt;&lt;/p&gt;&mdash; Aru (@IAmAru) &lt;a href="https://twitter.com/IAmAru/status/608455483507245059"&gt;June 10, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -173,7 +177,7 @@
         </div>
 
         <h3 id="tweetLinked">Linked</h3>
-        <p>Given a Tweet with ID '617749885933232128', simply add a <code>&lt;twitter-widget&gt;</code> tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.</p>
+        <p>Given a Tweet with ID <code>617749885933232128</code>, simply add a <code>&lt;twitter-widget&gt;</code> tag to your markup with an attribute named `twitter-widget-id` specifying the Tweet ID.</p>
 
         <div class="panel panel-default">
             <div class="panel-body">
@@ -219,6 +223,98 @@
                 </div>
             </div>
         </div>
+
+        <h2 id="timelines">Timelines</h2>
+        <p>As with tweets, there are two ways to embed <a href="https://dev.twitter.com/web/embedded-timelines">Timeline widgets</a> - with the source from Twitter (<a href="#timelineEmbedded">embedded</a>), or via widget ID (<a href="#timelineLinked">linked</a>).</p>
+
+        <h3 id="timelineEmbedded">Embedded</h3>
+        <p>Given the source for an embedded Timeline</p>
+
+        <pre><code class="language-markup">
+&lt;a class="twitter-timeline"  href="https://twitter.com/IAmAru/lists/food-trucks" data-widget-id="673710543212052480"&gt;Tweets from https://twitter.com/IAmAru/lists/food-trucks&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");&lt;/script&gt;
+        </code></pre>
+
+        <p>First, remove the <code>&lt;script&gt;</code> element from the markup. Then wrap it in a <code>&lt;twitter-timeline&gt;</code> tag:</p>
+
+        <pre><code class="language-markup">
+&lt;twitter-timeline&gt;
+    &lt;a class="twitter-timeline"
+       href="https://twitter.com/IAmAru/lists/food-trucks"
+       data-widget-id="673710543212052480"&gt;
+       Tweets from https://twitter.com/IAmAru/lists/food-trucks
+    &lt;/a&gt;
+&lt;twitter-timeline&gt;</code></pre>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-timeline>
+                                <a class="twitter-timeline" href="https://twitter.com/IAmAru/lists/food-trucks" data-widget-id="673710543212052480"> Tweets from https://twitter.com/IAmAru/lists/food-trucks</a>
+                            </twitter-timeline>
+                        </div>
+                        <div ng-if="!visible">
+                            <!-- Note: The sample Tweet below is missing the `twitter-tweet` class because it's being selectively rendered. -->
+                            <a class="twitter-timeline-unrendered" href="https://twitter.com/IAmAru/lists/food-trucks" data-widget-id="673710543212052480"> Tweets from https://twitter.com/IAmAru/lists/food-trucks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="timelineLinked">Linked</h3>
+        <p>Given a Timeline with ID <code>673710543212052480</code>, simply add a <code>&lt;twitter-timeline&gt;</code> tag to your markup with an attribute named `twitter-timeline-id` specifying the Tweet ID.</p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-timeline twitter-timeline-id="'673710543212052480'">
+                            </twitter-timeline>
+                        </div>
+                        <div ng-if="!visible">
+                            <pre><code class="language-markup" prism>
+&lt;twitter-timeline twitter-timeline-id="'673710543212052480'"&gt;
+&lt;/twitter-timeline&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Timeline appearance can be customized by adding a <code>twitter-timeline-options</code> attribute with an object containing the configuration parameters (<a href="https://dev.twitter.com/web/embedded-timelines/parameters">as defined in the Twitter Timeline API docs</a>). If you're directly passing in an object, it <em>must</em> be a parseable JSON object (i.e. all quotes must be double quotes, etc.).</p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-timeline twitter-timeline-id="'673710543212052480'" twitter-timeline-options='{"chrome": "noheader"}'>
+                            </twitter-widget>
+                        </div>
+                        <div ng-if="!visible">
+                            <pre><code class="language-markup" prism>
+&lt;twitter-timeline twitter-timeline-id="'673710543212052480'"
+                  twitter-timeline-options='{"chrome": "hidden"}'&gt;
+&lt;/twitter-timeline&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h2 id="additional">Additional Features</h2>
         <h3>Script Loading Hint</h3>
         <p>ngTweet downloads Twitter's Widgets script the first time a widget directive is encountered. To download the script at app startup, add the <code>twitter-widget-initialize</code> attribute to an element. For example:</p>
