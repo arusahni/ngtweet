@@ -1,3 +1,8 @@
+## 0.3.0
+
+### Enhancements
+* Added a `twitterTimeline` directive to allow for timeline embeds.
+
 ## 0.2.0
 
 ### Breaking changes
