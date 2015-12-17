@@ -48,8 +48,18 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
 
     function createTweet(id, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating', twttr, id, element, options);
+            $log.debug('Creating Tweet', twttr, id, element, options);
             return $q.when(twttr.widgets.createTweet(id, element, options));
+        });
+    }
+
+    function createTimeline(id, screenName, element, options) {
+        return loadScript().then(function success(twttr) {
+            $log.debug('Creating Timeline', id, screenName, options, element);
+            if (angular.isString(screenName) && screenName.length > 0) {
+                options['screenName'] = screenName;
+            }
+            return $q.when(twttr.widgets.createTimeline(id, element, options));
         });
     }
 
@@ -63,7 +73,8 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
     }
 
     return {
-        create: createTweet,
+        createTweet: createTweet,
+        createTimeline: createTimeline,
         initialize: startScriptLoad,
         load: wrapElement
     };

@@ -5,6 +5,7 @@
 
 ### Enhancements
 * Added a `twitterWidgetInitialize` directive to load the script greedily (instead of on-demand).
+* Added an optional `twitter-widget-options` attribute to the `twitterWidget` directive to allow for Tweet appearance customization.
 
 ## 0.1.2
 
