@@ -16,13 +16,13 @@ function TwitterWidget($log, TwitterWidgetFactory) {
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
-            $log.debug('Linking', element, attrs);
+            // $log.debug('Linking', element, attrs);
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 if (!angular.isString(scope.twitterWidgetId)) {
                     $log.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
                 TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
-                    $log.debug('Success!!!');
+                    // $log.debug('Success!!!');
                 }).catch(function creationError(message) {
                     $log.error('Could not create widget: ', message, element);
                 });

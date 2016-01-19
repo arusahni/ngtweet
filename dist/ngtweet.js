@@ -50,7 +50,7 @@ function TwitterTimeline($log, TwitterWidgetFactory) {
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
-            $log.debug('Linking', element, attrs);
+            // $log.debug('Linking', element, attrs);
             if (!angular.isString(scope.twitterTimelineId)) {
                 $log.warn('twitterTimelineId should probably be a string due to loss of precision.');
             }
@@ -68,7 +68,7 @@ function TwitterTimeline($log, TwitterWidgetFactory) {
             }
             if (!angular.isUndefined(scope.twitterTimelineId) || angular.isString(scope.twitterTimelineScreenName)) {
                 TwitterWidgetFactory.createTimeline(scope.twitterTimelineId, scope.twitterTimelineScreenName, element[0], scope.twitterTimelineOptions).then(function success(embed) {
-                    $log.debug('Timeline Success!!!');
+                    // $log.debug('Timeline Success!!!');
                 }).catch(function creationError(message) {
                     $log.error('Could not create timeline: ', message, element);
                 });
@@ -99,13 +99,13 @@ function TwitterWidget($log, TwitterWidgetFactory) {
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
-            $log.debug('Linking', element, attrs);
+            // $log.debug('Linking', element, attrs);
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 if (!angular.isString(scope.twitterWidgetId)) {
                     $log.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
                 TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
-                    $log.debug('Success!!!');
+                    // $log.debug('Success!!!');
                 }).catch(function creationError(message) {
                     $log.error('Could not create widget: ', message, element);
                 });
@@ -155,7 +155,7 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
         deferred = $q.defer();
         startScriptLoad();
         $window.twttr.ready(function onLoadTwitterScript(twttr) {
-            $log.debug('Twitter script ready');
+            // $log.debug('Twitter script ready');
             twttr.events.bind('rendered', onTweetRendered);
             deferred.resolve(twttr);
         });
@@ -163,19 +163,19 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
     }
 
     function onTweetRendered(event) {
-        $log.debug('Tweet rendered', event.target.parentElement.attributes);
+        // $log.debug('Tweet rendered', event.target.parentElement.attributes);
     }
 
     function createTweet(id, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating Tweet', twttr, id, element, options);
+            // $log.debug('Creating Tweet', twttr, id, element, options);
             return $q.when(twttr.widgets.createTweet(id, element, options));
         });
     }
 
     function createTimeline(id, screenName, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating Timeline', id, screenName, options, element);
+            // $log.debug('Creating Timeline', id, screenName, options, element);
             if (angular.isString(screenName) && screenName.length > 0) {
                 options['screenName'] = screenName;
             }
@@ -185,7 +185,7 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
 
     function wrapElement(element) {
         loadScript().then(function success(twttr) {
-            $log.debug('Wrapping', twttr, element);
+            // $log.debug('Wrapping', twttr, element);
             twttr.widgets.load(element);
         }).catch(function errorWrapping(message) {
             $log.error('Could not wrap element: ', message, element);
@@ -215,7 +215,7 @@ function TwitterWidgetInitialize($log, TwitterWidgetFactory) {
         replace: false,
         scope: false,
         link: function(scope, element, attrs) {
-            $log.debug('Initializing');
+            // $log.debug('Initializing');
             TwitterWidgetFactory.initialize();
         }
     };

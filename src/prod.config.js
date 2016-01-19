@@ -9,7 +9,8 @@ angular
     .config(prodConfig);
 
 function prodConfig($compileProvider, $logProvider) {
-    $compileProvider.debugInfoEnabled(false);
-    $logProvider.debugEnabled(false);
+    // Disabled because these are global - not local to the module. Will disable logging another way.
+    // $compileProvider.debugInfoEnabled(false);
+    // $logProvider.debugEnabled(false);
 }
 })();

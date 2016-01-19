@@ -11,7 +11,7 @@ function TwitterWidgetInitialize($log, TwitterWidgetFactory) {
         replace: false,
         scope: false,
         link: function(scope, element, attrs) {
-            $log.debug('Initializing');
+            // $log.debug('Initializing');
             TwitterWidgetFactory.initialize();
         }
     };
