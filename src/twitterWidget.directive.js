@@ -5,7 +5,7 @@ angular
     .module('ngtweet')
     .directive('twitterWidget', TwitterWidget);
 
-function TwitterWidget($log, TwitterWidgetFactory) {
+function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
     return {
         restrict: 'E',
         replace: true,
@@ -16,15 +16,15 @@ function TwitterWidget($log, TwitterWidgetFactory) {
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
-            // $log.debug('Linking', element, attrs);
+            ngTweetLogger.debug('Linking', element, attrs);
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 if (!angular.isString(scope.twitterWidgetId)) {
-                    $log.warn('twitterWidgetId should probably be a string due to loss of precision.');
+                    ngTweetLogger.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
                 TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
-                    // $log.debug('Success!!!');
+                    ngTweetLogger.debug('Success!!!');
                 }).catch(function creationError(message) {
-                    $log.error('Could not create widget: ', message, element);
+                    ngTweetLogger.error('Could not create widget: ', message, element);
                 });
             } else {
                 TwitterWidgetFactory.load(element[0]);
