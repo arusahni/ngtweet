@@ -4,6 +4,14 @@ Easily embed Twitter widgets into your Angular application! No more having to kl
 
 ## Installation
 
+### Node
+
+```console
+npm install --save ngtweet
+```
+
+### Bower
+
 ```console
 $ bower install ngtweet
 ```
@@ -114,4 +122,4 @@ Pull requests are welcomed!  The existing code follows John Papa's wonderful [An
 
 ## The Future (tm)
 
-This is very much a young library, so I'm open to suggestions as to what direction it should go.  Currently, I'm planning on exposing other parts of the Twitter Widget library, including timelines, as well as adding eventing features, and promise support for render events.
+This is very much a young library, so I'm open to suggestions as to what direction it should go.  Currently I'm planning on adding eventing features and promise support for render events.
