@@ -28,6 +28,7 @@
 (function() {
 'use strict';
 
-angular.module('ngtweet', []);
-
+angular
+    .module('ngtweet', [])
+    .value('logVerbose', true);
 })();

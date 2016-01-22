@@ -8,8 +8,9 @@ angular
     .module('ngtweet')
     .config(prodConfig);
 
-function prodConfig($compileProvider, $logProvider) {
-    $compileProvider.debugInfoEnabled(false);
-    $logProvider.debugEnabled(false);
+function prodConfig($provide) {
+    $provide.decorator('logVerbose', function($delegate) {
+        return false;
+    });
 }
 })();

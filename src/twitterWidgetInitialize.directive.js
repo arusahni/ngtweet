@@ -5,13 +5,13 @@ angular
     .module('ngtweet')
     .directive('twitterWidgetInitialize', TwitterWidgetInitialize);
 
-function TwitterWidgetInitialize($log, TwitterWidgetFactory) {
+function TwitterWidgetInitialize(ngTweetLogger, TwitterWidgetFactory) {
     return {
         restrict: 'A',
         replace: false,
         scope: false,
         link: function(scope, element, attrs) {
-            $log.debug('Initializing');
+            ngTweetLogger.debug('Initializing');
             TwitterWidgetFactory.initialize();
         }
     };

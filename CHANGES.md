@@ -1,3 +1,7 @@
+## 0.3.1
+
+* No longer clobber global log and debug state with the production build.
+
 ## 0.3.0
 
 ### Enhancements

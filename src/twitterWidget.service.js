@@ -5,7 +5,7 @@ angular
     .module('ngtweet')
     .factory('TwitterWidgetFactory', TwitterWidgetFactory);
 
-function TwitterWidgetFactory($document, $http, $log, $q, $window) {
+function TwitterWidgetFactory($document, $http, ngTweetLogger, $q, $window) {
     var deferred;
     var statusRe = /.*\/status\/(\d+)/;
 
@@ -35,7 +35,7 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
         deferred = $q.defer();
         startScriptLoad();
         $window.twttr.ready(function onLoadTwitterScript(twttr) {
-            $log.debug('Twitter script ready');
+            ngTweetLogger.debug('Twitter script ready');
             twttr.events.bind('rendered', onTweetRendered);
             deferred.resolve(twttr);
         });
@@ -43,19 +43,19 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
     }
 
     function onTweetRendered(event) {
-        $log.debug('Tweet rendered', event.target.parentElement.attributes);
+        ngTweetLogger.debug('Tweet rendered', event.target.parentElement.attributes);
     }
 
     function createTweet(id, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating Tweet', twttr, id, element, options);
+            ngTweetLogger.debug('Creating Tweet', twttr, id, element, options);
             return $q.when(twttr.widgets.createTweet(id, element, options));
         });
     }
 
     function createTimeline(id, screenName, element, options) {
         return loadScript().then(function success(twttr) {
-            $log.debug('Creating Timeline', id, screenName, options, element);
+            ngTweetLogger.debug('Creating Timeline', id, screenName, options, element);
             if (angular.isString(screenName) && screenName.length > 0) {
                 options['screenName'] = screenName;
             }
@@ -65,10 +65,10 @@ function TwitterWidgetFactory($document, $http, $log, $q, $window) {
 
     function wrapElement(element) {
         loadScript().then(function success(twttr) {
-            $log.debug('Wrapping', twttr, element);
+            ngTweetLogger.debug('Wrapping', twttr, element);
             twttr.widgets.load(element);
         }).catch(function errorWrapping(message) {
-            $log.error('Could not wrap element: ', message, element);
+            ngTweetLogger.error('Could not wrap element: ', message, element);
         });
     }
 
