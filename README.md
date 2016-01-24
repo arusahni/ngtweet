@@ -118,9 +118,10 @@ The first time the `twitterWidget` directive is encountered, ngTweet downloads T
 
 ### Configuration
 
-You can configure the source of the `widget.js` file in case you wanna load it from local.
+You can change the source of the `widget.js` file in case you want to host your own version:
+
 ```javascript
-angular.module("ngtweet-test", ['ngtweet'])
+angular.module("myApp", ['ngtweet'])
 .run(function(TwitterWidgetFactory)){
   TwitterWidgetFactory.setWidgetURL("PATH/TO/widgets.js"); // default https://platform.twitter.com/widgets.js
 }

@@ -1,3 +1,7 @@
+## 0.3.2
+
+* Don't use a protocol-relative URL for script loading. It was breaking ngTweet in Ionic, and is a practice that is no longer considered appropriate for the web.
+
 ## 0.3.1
 
 * No longer clobber global log and debug state with the production build.
