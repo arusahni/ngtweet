@@ -116,17 +116,6 @@ The first time the `twitterWidget` directive is encountered, ngTweet downloads T
 </html>
 ```
 
-### Configuration
-
-You can configure the source of the `widget.js` file in case you wanna load it from local.
-```javascript
-angular.module("ngtweet-test", ['ngtweet'])
-.run(function(TwitterWidgetFactory)){
-  TwitterWidgetFactory.setWidgetURL("PATH/TO/widgets.js"); // default https://platform.twitter.com/widgets.js
-}
-```
-
-
 ## Contributing
 
 Pull requests are welcomed!  The existing code follows John Papa's wonderful [Angular Style Guide](https://github.com/johnpapa/angular-styleguide). Run `gulp build` to generate the debug and minified JavaScript files, and then `gulp serve` to run the demo site to verify embeds work.  Please include the compiled code within the `dist/` directory with your PR.
