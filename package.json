@@ -3,6 +3,7 @@
   "version": "0.3.1",
   "homepage": "https://github.com/arusahni/ngtweet/",
   "repository": "arusahni/ngtweet",
+  "bugs": "https://github.com/arusahni/ngtweet/issues",
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
   "main": "index.js",
   "scripts": {
