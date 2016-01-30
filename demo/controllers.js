@@ -6,5 +6,4 @@ angular.module('ngtweet-test').controller('MainCtrl', function($scope, $rootScop
     });
 });
 angular.module('ngtweet-test').controller('HomeCtrl', function($scope) {
-    $scope.name = 'World';
 });
