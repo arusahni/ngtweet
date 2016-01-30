@@ -30,5 +30,6 @@
 
 angular
     .module('ngtweet', [])
-    .value('logVerbose', true);
+    .value('logVerbose', true)
+    .value('twitterWidgetURL', 'https://platform.twitter.com/widgets.js');
 })();

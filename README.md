@@ -122,9 +122,7 @@ You can change the source of the `widget.js` file in case you want to host your 
 
 ```javascript
 angular.module("myApp", ['ngtweet'])
-.run(function(TwitterWidgetFactory)){
-  TwitterWidgetFactory.setWidgetURL("PATH/TO/widgets.js"); // default https://platform.twitter.com/widgets.js
-}
+       .value('twitterWidgetURL', '/PATH/TO/widgets.js'); // default https://platform.twitter.com/widgets.js
 ```
 
 

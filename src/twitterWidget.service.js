@@ -5,10 +5,9 @@ angular
     .module('ngtweet')
     .factory('TwitterWidgetFactory', TwitterWidgetFactory);
 
-function TwitterWidgetFactory($document, $http, ngTweetLogger, $q, $window) {
+function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL, $q, $window) {
     var deferred;
     var statusRe = /.*\/status\/(\d+)/;
-    var widgetURL = 'https://platform.twitter.com/widgets.js';
 
     function startScriptLoad() {
         $window.twttr = (function(d, s, id) {
@@ -17,7 +16,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, $q, $window) {
             if (d.getElementById(id)) { return; }
             js = d.createElement(s);
             js.id = id;
-            js.src = widgetURL;
+            js.src = twitterWidgetURL;
             fjs.parentNode.insertBefore(js, fjs);
 
             t._e = [];
@@ -73,16 +72,11 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, $q, $window) {
         });
     }
 
-    function setWidgetURL(URL){
-        widgetURL = URL;
-    }
-
     return {
         createTweet: createTweet,
         createTimeline: createTimeline,
         initialize: startScriptLoad,
-        load: wrapElement,
-        setWidgetURL: setWidgetURL
+        load: wrapElement
     };
 }
 })();
