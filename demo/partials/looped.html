@@ -1,0 +1,6 @@
+<p>There should be {{ tweetIDs.length }} tweets below.</p>
+<div ng-repeat="tweetID in tweetIDs track by $index">
+    <twitter-widget twitter-widget-id="tweetID" twitter-widget-options="{}">
+    </twitter-widget>
+</div>
+
