@@ -1,6 +1,6 @@
 # ngTweet
 
-Easily embed Twitter widgets into your Angular application! No more having to kludge together a Twitter script loader, or manage embed state on route/visibility change.
+Easily embed Twitter widgets into your Angular application! No more having to kludge together a Twitter script loader, or manage embed state on visibility change.
 
 ## Installation
 
@@ -67,6 +67,16 @@ Given a Tweet with ID '617749885933232128', simply add a `<twitter-widget>` tag 
 ```html
 <twitter-widget twitter-widget-id="'617749885933232128'">
 </twitter-widget>
+```
+
+This, combined with `ngRepeat`, can display collections of individual Tweets:
+
+```html
+<!-- Note: Tweet IDs should be represented as strings in order to maintain precision -->
+<div ng-repeat="tweetID in tweetIDs track by $index">
+    <twitter-widget twitter-widget-id="tweetID">
+    </twitter-widget>
+</div>
 ```
 
 ![A screenshot of a rendered linked Tweet](./res/rendered-linked.png)
