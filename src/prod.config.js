@@ -9,7 +9,7 @@ angular
     .config(prodConfig);
 
 function prodConfig($provide) {
-    $provide.decorator('logVerbose', function($delegate) {
+    $provide.decorator('ngTweetLogVerbose', function($delegate) {
         return false;
     });
 }

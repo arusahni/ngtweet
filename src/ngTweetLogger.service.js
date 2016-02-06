@@ -5,11 +5,11 @@ angular
     .module('ngtweet')
     .factory('ngTweetLogger', ngTweetLogger);
 
-function ngTweetLogger($log, logVerbose) {
+function ngTweetLogger($log, ngTweetLogVerbose) {
     var noop = function() {};
 
     var verboseCall = function verboseCall(call) {
-        if (logVerbose === true) {
+        if (ngTweetLogVerbose === true) {
             return call;
         }
         return noop;

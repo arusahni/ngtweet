@@ -30,7 +30,7 @@
 
 angular
     .module('ngtweet', [])
-    .value('logVerbose', true)
+    .value('ngTweetLogVerbose', true)
     .value('twitterWidgetURL', 'https://platform.twitter.com/widgets.js');
 })();
 
@@ -41,11 +41,11 @@ angular
     .module('ngtweet')
     .factory('ngTweetLogger', ngTweetLogger);
 
-function ngTweetLogger($log, logVerbose) {
+function ngTweetLogger($log, ngTweetLogVerbose) {
     var noop = function() {};
 
     var verboseCall = function verboseCall(call) {
-        if (logVerbose === true) {
+        if (ngTweetLogVerbose === true) {
             return call;
         }
         return noop;
@@ -59,7 +59,7 @@ function ngTweetLogger($log, logVerbose) {
         'error': $log.error
     };
 }
-ngTweetLogger.$inject = ["$log", "logVerbose"];
+ngTweetLogger.$inject = ["$log", "ngTweetLogVerbose"];
 })();
 
 (function() {
