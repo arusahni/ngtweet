@@ -1,9 +1,11 @@
-## 0.3.2
+## 0.4.0
 
-* Don't use a protocol-relative URL for script loading. It was breaking ngTweet in Ionic, and is a practice that is no longer considered appropriate for the web.
+### Breaking changes
+* Don't use a protocol-relative URL for script loading. It was breaking ngTweet in Ionic, and is a practice that is no longer considered appropriate for the web. The widgets file is now served via https. If you don't want this, the URL can be changed via configuration.
 
 ## 0.3.1
 
+### Fixes
 * No longer clobber global log and debug state with the production build.
 
 ## 0.3.0
