@@ -128,11 +128,11 @@ The first time the `twitterWidget` directive is encountered, ngTweet downloads T
 
 ### Configuration
 
-You can change the source of the `widget.js` file in case you want to host your own version:
+You can specify the location of the `widget.js` file if you want to host your own version:
 
 ```javascript
 angular.module("myApp", ['ngtweet'])
-       .value('twitterWidgetURL', '/PATH/TO/widgets.js'); // default https://platform.twitter.com/widgets.js
+       .value('twitterWidgetURL', '/PATH/TO/widgets.js'); //default https://platform.twitter.com/widgets.js
 ```
 
 
@@ -142,4 +142,4 @@ Pull requests are welcomed!  The existing code follows John Papa's wonderful [An
 
 ## The Future (tm)
 
-This is very much a young library, so I'm open to suggestions as to what direction it should go.  Currently I'm planning on adding eventing features and promise support for render events.
+This is very much a young library, so I'm open to suggestions as to what direction it should go.  Currently eventing features and promise support for render events are slated for future development.
