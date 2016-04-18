@@ -128,13 +128,14 @@ The first time the `twitterWidget` directive is encountered, ngTweet downloads T
 
 ### Configuration
 
-You can specify the location of the `widget.js` file if you want to host your own version:
+You can change the path to the `widget.js` file in case you want to host your own version:
 
 ```javascript
 angular.module("myApp", ['ngtweet'])
        .value('twitterWidgetURL', '/PATH/TO/widgets.js'); //default https://platform.twitter.com/widgets.js
 ```
 
+Since the `widgets.js` file is served over SSL by default, the `twitterWidgetURL` value can be modified to use the plain 'ol HTTP version.
 
 ## Contributing
 
