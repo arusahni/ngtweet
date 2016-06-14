@@ -1,11 +1,11 @@
 {
   "name": "ngtweet",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "authors": [
     "Aru Sahni <arusahni@gmail.com>"
   ],
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
-  "main": "dist/ngtweet.min.js",
+  "main": "dist/ngtweet.js",
   "keywords": [
     "angular",
     "angularjs",
@@ -19,7 +19,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "demo/bower_components/",
+    "demo",
     "test",
     "tests"
   ],
