@@ -1,3 +1,14 @@
+## 0.5.1
+* Emergency release to include an updated changelog with the package
+
+## 0.5.0
+
+### Enhancements
+* Add callback capabilities for linked Tweet embeds via `twitter-widget-on-rendered`. See the [callback demo](./demo/partials/callbacks.html) for more details.
+
+### Fixes
+* Address $compile:nonassign error when using twitter-widget-options. (@emertechie)
+
 ## 0.4.0
 
 ### Breaking changes
