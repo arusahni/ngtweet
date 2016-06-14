@@ -13,16 +13,17 @@ function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
         scope: {
             twitterWidgetId: '=',
             twitterWidgetOnRendered: '&',
-            twitterWidgetOptions: '='
+            twitterWidgetOptions: '@'
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
             ngTweetLogger.debug('Linking', element, attrs);
+            var twitterWidgetOptions = scope.$eval(attrs.twitterWidgetOptions);
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 if (!angular.isString(scope.twitterWidgetId)) {
                     ngTweetLogger.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
-                TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
+                TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], twitterWidgetOptions).then(function success(embed) {
                     ngTweetLogger.debug('Success!!!');
                     scope.twitterWidgetOnRendered();
                 }).catch(function creationError(message) {
