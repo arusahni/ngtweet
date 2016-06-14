@@ -12,6 +12,7 @@ function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
         transclude: true,
         scope: {
             twitterWidgetId: '=',
+            twitterWidgetOnRendered: '&',
             twitterWidgetOptions: '='
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
@@ -23,6 +24,7 @@ function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
                 }
                 TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
                     ngTweetLogger.debug('Success!!!');
+                    scope.twitterWidgetOnRendered();
                 }).catch(function creationError(message) {
                     ngTweetLogger.error('Could not create widget: ', message, element);
                 });

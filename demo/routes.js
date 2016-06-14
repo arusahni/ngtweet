@@ -14,6 +14,10 @@ angular.module('ngtweet-test').config(['$routeProvider',
           templateUrl: 'partials/looped.html',
           controller: 'LoopCtrl'
       }).
+      when('/callbacks', {
+          templateUrl: 'partials/callbacks.html',
+          controller: 'CallbackCtrl'
+      }).
       when('/timelines', {
           templateUrl: 'partials/timelines.html'
       }).
