@@ -37,6 +37,7 @@ angular
 (function() {
 'use strict';
 
+ngTweetLogger.$inject = ["$log", "ngTweetLogVerbose"];
 angular
     .module('ngtweet')
     .factory('ngTweetLogger', ngTweetLogger);
@@ -59,12 +60,12 @@ function ngTweetLogger($log, ngTweetLogVerbose) {
         'error': $log.error
     };
 }
-ngTweetLogger.$inject = ["$log", "ngTweetLogVerbose"];
 })();
 
 (function() {
 'use strict';
 
+TwitterTimeline.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 angular
     .module('ngtweet')
     .directive('twitterTimeline', TwitterTimeline);
@@ -108,12 +109,12 @@ function TwitterTimeline(ngTweetLogger, TwitterWidgetFactory) {
         }
     };
 }
-TwitterTimeline.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 })();
 
 (function() {
 'use strict';
 
+TwitterWidget.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 angular
     .module('ngtweet')
     .directive('twitterWidget', TwitterWidget);
@@ -125,16 +126,17 @@ function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
         transclude: true,
         scope: {
             twitterWidgetId: '=',
-            twitterWidgetOptions: '='
+            twitterWidgetOptions: '@'
         },
         template: '<div class="ngtweet-wrapper" ng-transclude></div>',
         link: function(scope, element, attrs) {
             ngTweetLogger.debug('Linking', element, attrs);
+            var twitterWidgetOptions = scope.$eval(attrs.twitterWidgetOptions);
             if (!angular.isUndefined(scope.twitterWidgetId)) {
                 if (!angular.isString(scope.twitterWidgetId)) {
                     ngTweetLogger.warn('twitterWidgetId should probably be a string due to loss of precision.');
                 }
-                TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], scope.twitterWidgetOptions).then(function success(embed) {
+                TwitterWidgetFactory.createTweet(scope.twitterWidgetId, element[0], twitterWidgetOptions).then(function success(embed) {
                     ngTweetLogger.debug('Success!!!');
                 }).catch(function creationError(message) {
                     ngTweetLogger.error('Could not create widget: ', message, element);
@@ -145,12 +147,12 @@ function TwitterWidget(ngTweetLogger, TwitterWidgetFactory) {
         }
     };
 }
-TwitterWidget.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 })();
 
 (function() {
 'use strict';
 
+TwitterWidgetFactory.$inject = ["$document", "$http", "ngTweetLogger", "twitterWidgetURL", "$q", "$window"];
 angular
     .module('ngtweet')
     .factory('TwitterWidgetFactory', TwitterWidgetFactory);
@@ -229,12 +231,12 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
         load: wrapElement
     };
 }
-TwitterWidgetFactory.$inject = ["$document", "$http", "ngTweetLogger", "twitterWidgetURL", "$q", "$window"];
 })();
 
 (function() {
 'use strict';
 
+TwitterWidgetInitialize.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 angular
     .module('ngtweet')
     .directive('twitterWidgetInitialize', TwitterWidgetInitialize);
@@ -250,5 +252,4 @@ function TwitterWidgetInitialize(ngTweetLogger, TwitterWidgetFactory) {
         }
     };
 }
-TwitterWidgetInitialize.$inject = ["ngTweetLogger", "TwitterWidgetFactory"];
 })();
