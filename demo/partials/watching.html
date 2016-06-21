@@ -1,0 +1,9 @@
+<div>
+    <p>There should be a single tweet below. It will appear (and change) whenever a Tweet ID is clicked..</p>
+    <ul>
+        <li ng-class="{'bg-success': tweetId == selectedTweet}" ng-repeat="tweetId in tweetIDs track by $index"><a href="" ng-click="selectTweet(tweetId)">{{tweetId}}</a></li>
+    </ul>
+    <twitter-widget twitter-widget-id="selectedTweet" twitter-widget-options="{}">
+    </twitter-widget>
+</div>
+

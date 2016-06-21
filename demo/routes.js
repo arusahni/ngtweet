@@ -10,6 +10,10 @@ angular.module('ngtweet-test').config(['$routeProvider',
       when('/ids', {
           templateUrl: 'partials/ids.html'
       }).
+      when('/watching', {
+          templateUrl: 'partials/watching.html',
+          controller: 'LoopCtrl'
+      }).
       when('/looped', {
           templateUrl: 'partials/looped.html',
           controller: 'LoopCtrl'
