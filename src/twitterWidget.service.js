@@ -63,6 +63,13 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
         });
     }
 
+    function createTimelineNew(timelineArgs, element, options) {
+        return loadScript().then(function success(twttr) {
+            ngTweetLogger.debug('Creating new Timeline', timelineArgs, options, element);
+            return $q.when(twttr.widgets.createTimeline(timelineArgs, element, options));
+        });
+    }
+
     function wrapElement(element) {
         loadScript().then(function success(twttr) {
             ngTweetLogger.debug('Wrapping', twttr, element);
@@ -75,6 +82,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
     return {
         createTweet: createTweet,
         createTimeline: createTimeline,
+        createTimelineNew: createTimelineNew,
         initialize: startScriptLoad,
         load: wrapElement
     };
