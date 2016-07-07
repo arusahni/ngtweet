@@ -25,6 +25,9 @@ angular.module('ngtweet-test').config(['$routeProvider',
       when('/timelines', {
           templateUrl: 'partials/timelines.html'
       }).
+      when('/new-timelines', {
+          templateUrl: 'partials/new-timelines.html'
+      }).
       when('/lists', {
           templateUrl: 'partials/lists.html'
       }).
