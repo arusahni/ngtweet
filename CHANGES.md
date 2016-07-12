@@ -1,3 +1,8 @@
+## 0.6.0
+
+### Enhancements
+* Add support for Twitter's [new timeline embedding syntax](https://blog.twitter.com/2016/embedding-twitter-timelines-just-got-a-lot-easier).
+
 ## 0.5.1
 * Emergency release to include an updated changelog with the package
 
@@ -17,7 +22,7 @@
 ## 0.3.1
 
 ### Fixes
-* No longer clobber global log and debug state with the production build.
+* No longer clobber global log and debug states with the production build.
 
 ## 0.3.0
 

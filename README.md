@@ -113,6 +113,17 @@ Given a timeline with ID '673710543212052480', simply add a `<twitter-timeline>`
 
 ![A screenshot of a rendered linked timeline](./res/rendered-timeline-linked.png)
 
+### New-style Timeline's
+
+Recently, Twitter updated how one goes about embedding a timeline - instead of generating an ID and linking to it, the parameters and type of timeline must be defined.  To get the food truck timeline from above...
+
+```html
+<twitter-timeline twitter-timeline-type='list'
+                  twitter-timeline-owner-screen-name='"IAmAru"'
+                  twitter-timeline-slug='"food-trucks"'>
+</twitter-timeline>
+```
+
 ## Additional features
 
 ### Eagerly load the Twitter widget script
