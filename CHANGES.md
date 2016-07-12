@@ -1,6 +1,7 @@
 ## 0.6.0
 
 ### Enhancements
+* TwitterWidgets update when a bound ID changes.
 * Add support for Twitter's [new timeline embedding syntax](https://blog.twitter.com/2016/embedding-twitter-timelines-just-got-a-lot-easier).
 
 ## 0.5.1
