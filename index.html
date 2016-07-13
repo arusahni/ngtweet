@@ -326,6 +326,36 @@
             </div>
         </div>
 
+        <p>If you don't have an ID for the timeline, <a href="https://blog.twitter.com/2016/embedding-twitter-timelines-just-got-a-lot-easier">due to recent changes to the Twitter embedding API</a>, fret not - there is an alternative for you! Simply specify the <code>twitter-timeline-type</code> and appropriate arguments. For example, for the above...</p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" ng-controller="ToggleVisibilityCtrl">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" ng-class="{active: visible}" ng-click="visible = !visible">{{ visible ? "Remove" : "Load" }} Widget</button>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="visible">
+                            <twitter-timeline twitter-timeline-type="list"
+                                              twitter-timeline-owner-screen-name="'IAmAru'"
+                                              twitter-timeline-slug="'food-trucks'"
+                                              twitter-timeline-options='{"height": 400}'>
+                            </twitter-widget>
+                        </div>
+                        <div ng-if="!visible">
+                            <pre><code class="language-markup" prism>
+&lt;twitter-timeline twitter-timeline-type="list"
+                  twitter-timeline-owner-screen-name="'IAmAru'"
+                  twitter-timeline-slug="'food-trucks'"
+                  twitter-timeline-options='{"chrome": "noheader"}'&gt;
+&lt;/twitter-widget&gt;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h2 id="additional">Additional Features</h2>
         <h3>Script Loading Hint</h3>
         <p>ngTweet downloads Twitter's Widgets script the first time a widget directive is encountered. To download the script at app startup, add the <code>twitter-widget-initialize</code> attribute to an element. For example:</p>
