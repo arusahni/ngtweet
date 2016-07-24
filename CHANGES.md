@@ -1,3 +1,8 @@
+## 0.6.1
+
+### Fixes
+* Fixed race condition where, if a widget was initialized before the preload, everything would fail to load.
+
 ## 0.6.0
 
 ### Enhancements
