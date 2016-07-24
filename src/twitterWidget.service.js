@@ -12,7 +12,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
     function startScriptLoad() {
         $window.twttr = (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
-            t = $window.twttr || {};
+                t = $window.twttr || {};
             if (d.getElementById(id)) { return; }
             js = d.createElement(s);
             js.id = id;
@@ -83,7 +83,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
         createTweet: createTweet,
         createTimeline: createTimeline,
         createTimelineNew: createTimelineNew,
-        initialize: startScriptLoad,
+        initialize: loadScript,
         load: wrapElement
     };
 }
