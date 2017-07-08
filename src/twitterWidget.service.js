@@ -28,7 +28,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
         }($document[0], 'script', 'twitter-wjs'));
     }
 
-    function checkScriptLoaded() {
+    function isScriptLoaded() {
         return $window.twttr && $window.twttr.init;
     }
 
@@ -37,7 +37,7 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
             return deferred.promise;
         }
         deferred = $q.defer();
-        if (checkScriptLoaded()) {
+        if (isScriptLoaded()) {
             return deferred.resolve($window.twttr);
         }
 
