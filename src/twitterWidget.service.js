@@ -28,11 +28,19 @@ function TwitterWidgetFactory($document, $http, ngTweetLogger, twitterWidgetURL,
         }($document[0], 'script', 'twitter-wjs'));
     }
 
+    function checkScriptLoaded() {
+        return $window.twttr && $window.twttr.init;
+    }
+
     function loadScript() {
         if (!angular.isUndefined(deferred)) {
             return deferred.promise;
         }
         deferred = $q.defer();
+        if (checkScriptLoaded()) {
+            return deferred.resolve($window.twttr);
+        }
+
         startScriptLoad();
         $window.twttr.ready(function onLoadTwitterScript(twttr) {
             ngTweetLogger.debug('Twitter script ready');
