@@ -7,11 +7,12 @@
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
   "main": "dist/ngtweet.js",
   "keywords": [
-    "angular",
     "angularjs",
+    "angular",
     "twitter",
     "tweet",
-    "widget"
+    "widget",
+    "embed"
   ],
   "license": "MIT",
   "homepage": "https://github.com/arusahni/ngtweet",
@@ -24,10 +25,11 @@
     "tests"
   ],
   "dependencies": {
-      "angular": ">= 1.0.8"
+    "angular": ">= 1.0.8"
   },
   "devDependencies": {
-      "bootstrap": "~3.3.5",
-      "angular-route": "~1.4.2"
-  }
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.2"
+  },
+  "repository": "arusahni/ngtweet"
 }

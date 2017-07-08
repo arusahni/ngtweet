@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var del = require('del');
 var serve = require('gulp-serve');
+var sync = require('gulp-config-sync');
 
 var PATHS = {
     dist: './dist/',
@@ -40,5 +41,11 @@ gulp.task('build', ['build:dev', 'build:prod']);
 gulp.task('serve', ['build'], serve({
     root: ['demo', 'dist']
 }));
+
+gulp.task('syncVersions', function syncVersions() {
+    gulp.src('bower.json')
+        .pipe(sync())
+        .pipe(gulp.dest('.'));
+});
 
 gulp.task('default', ['build']);
