@@ -7,7 +7,9 @@
   "description": "An AngularJS module that provides an interface into Twitter's embedded widget library.",
   "main": "./dist/ngtweet.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp serve",
+    "build": "gulp build"
   },
   "keywords": [
     "angularjs",
