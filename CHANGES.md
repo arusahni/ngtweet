@@ -1,3 +1,11 @@
+## 1.0.0
+
+### Breaking changes
+* Angular 1.3 is now the minimum supported version.
+
+### Enhancements
+* TwitterTimelines now respond to changes for all bound parameters.
+
 ## 0.6.2
 
 ### Fixes
